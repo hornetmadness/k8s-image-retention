@@ -1,0 +1,11 @@
+database:
+  connection: sqlite:////okteto/database/k8s-images-rentention.sqlite3
+  debug: true
+app:
+  debug: true
+storage:
+  source_db: gs://this-is-my-bucket-name/k8s-image-retention.sqlite3
+  destination_db: /tmp/k8s-image-retention.sqlite3
+registry:
+  expire_age: 3600
+  

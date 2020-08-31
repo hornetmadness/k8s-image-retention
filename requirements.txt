@@ -1,0 +1,7 @@
+just_config
+arrow
+sqlalchemy
+sqlalchemy_utils
+python-box
+ruamel.yaml
+kubernetes

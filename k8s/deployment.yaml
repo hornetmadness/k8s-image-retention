@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+  labels:
+    app: k8s-image-rentention
+  name: k8s-image-retention
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: k8s-image-retention
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: k8s-image-retention
+    spec:
+      serviceAccountName: image-reader
+      containers:
+      - command: [ "sh" ]
+        args: [ "-c", "while true; do sleep 1; done" ]
+        image: us.gcr.io/erect-281821/k8s-image-retention:latest
+        imagePullPolicy: Always
+        name: k8s-image-rentention
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+
